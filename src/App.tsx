@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import GenreForm from "./components/GenreForm";
 import BookInstances from "./components/BookInstances";
 import CreateBookPage from "./pages/CreateBookPage";
+import BookUpdatePage from "./pages/BookUpdatePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="books" element={<Books />}></Route>
           <Route path="books/:id" element={<BookDetailPage />} />
           <Route path="book/create" element={<CreateBookPage />} />
+          <Route path="book/update/:id" element={<BookUpdatePage />} />
 
           {/* author routes  */}
           <Route path="authors" element={<Authors />} />

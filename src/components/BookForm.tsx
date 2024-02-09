@@ -1,25 +1,48 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Author, Genre } from "../types";
-import { API_BASE_URL } from "../hooks/useFetchData";
+import { Author, Book, Genre } from "../types";
 import { useNavigate } from "react-router-dom";
+
+export interface BookFormData {
+  title: string;
+  author: string;
+  summary: string;
+  isbn: string;
+  genre: string[];
+}
 
 interface BookFormProps {
   authors: Author[];
   genres: Genre[];
+  initialBook?: Book;
+  onSubmit: (formData: BookFormData) => void;
 }
 
-const BookForm: React.FC<BookFormProps> = ({ authors, genres }) => {
-  const [title, setTitle] = useState("");
+const BookForm: React.FC<BookFormProps> = ({
+  authors,
+  genres,
+  initialBook,
+  onSubmit,
+}) => {
+  const [title, setTitle] = useState(initialBook?.title || "");
   const [author, setAuthor] = useState("");
-  const [summary, setSummary] = useState("");
-  const [isbn, setIsbn] = useState("");
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [summary, setSummary] = useState(initialBook?.summary || "");
+  const [isbn, setIsbn] = useState(initialBook?.isbn || "");
+
+  const generIds: string[] = [];
+  if (initialBook) {
+    initialBook.genre.forEach((g) => {
+      const id: string = g._id;
+      generIds.push(id);
+    });
+  }
+
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([...generIds]);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const formData = {
       title,
       author,
@@ -28,29 +51,9 @@ const BookForm: React.FC<BookFormProps> = ({ authors, genres }) => {
       genre: selectedGenres,
     };
 
-    try {
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+    onSubmit(formData);
 
-      if (!token) {
-        throw new Error("Token not found");
-      }
-
-      const response = await axios.post(
-        `${API_BASE_URL}/catalog/book/create`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("Book created:", response.data);
-
-      navigate("/books");
-    } catch (error) {
-      console.error("Error creating book:", error);
-      // Handle error here
-    }
+    navigate("/books");
   };
 
   return (

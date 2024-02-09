@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { Book, BookInstace } from "../types";
 import { useFetchData } from "../hooks/useFetchData";
@@ -34,6 +34,13 @@ const BookDetailPage = () => {
           <p>{bookInstace?.imprint}</p>
         </div>
       ))}
+
+      <div>
+        <button className="p-2 mr-4 bg-blue-600">
+          <Link to={`/book/update/${book._id}`}>Update</Link>
+        </button>
+        <button className="p-2 bg-blue-600">Delete</button>
+      </div>
     </div>
   );
 };

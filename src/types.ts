@@ -19,6 +19,7 @@ export interface Author {
 export interface Genre {
   _id: string;
   name: string;
+  checked?: boolean;
 }
 
 export interface Book {
