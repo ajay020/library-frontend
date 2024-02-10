@@ -13,6 +13,7 @@ import BookInstances from "./components/BookInstances";
 import CreateBookPage from "./pages/CreateBookPage";
 import BookUpdatePage from "./pages/BookUpdatePage";
 import BookDeletePage from "./pages/BookDeletePage";
+import CreateAuthorPage from "./pages/CreateAuthorPage";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           {/* author routes  */}
           <Route path="authors" element={<Authors />} />
           <Route path="authors/:id" element={<AuthorDetailPage />} />
-          <Route path="author/create" element={<CreateBookPage />} />
+          <Route path="author/create" element={<CreateAuthorPage />} />
 
           {/* genre routes  */}
           <Route path="genres" element={<Genres />} />

@@ -23,7 +23,7 @@ const Sidebar = () => {
           <Link to="book/create">Create new book</Link>
         </li>
         <li className="hover:underline">
-          <Link to="authors">Create new author</Link>
+          <Link to="author/create">Create new author</Link>
         </li>
         <li className="hover:underline">
           <Link to="genres">Create new bookInstace</Link>
