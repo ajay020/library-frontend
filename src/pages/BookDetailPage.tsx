@@ -39,7 +39,9 @@ const BookDetailPage = () => {
         <button className="p-2 mr-4 bg-blue-600">
           <Link to={`/book/update/${book._id}`}>Update</Link>
         </button>
-        <button className="p-2 bg-blue-600">Delete</button>
+        <button className="p-2 bg-blue-600">
+          <Link to={`/book/delete/${book._id}`}>Delete</Link>
+        </button>
       </div>
     </div>
   );
