@@ -10,8 +10,8 @@ export interface Author {
   _id: string;
   first_name: string;
   family_name: string;
-  date_of_birth?: Date;
-  date_of_death?: Date;
+  date_of_birth?: string;
+  date_of_death?: string;
 
   __v: number;
 }

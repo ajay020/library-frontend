@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { Author, Book } from "../types";
 import { useFetchData } from "../hooks/useFetchData";
@@ -32,7 +32,6 @@ const AuthorDetailPage: React.FC = () => {
         {author.first_name} {author.family_name}
       </h2>
       <p>Date of Birth: {author?.date_of_birth?.toString()}</p>
-
       <p>Books: </p>
 
       {author_books.map((book: Book) => (
@@ -40,6 +39,15 @@ const AuthorDetailPage: React.FC = () => {
           <p>{book.title}</p>
         </div>
       ))}
+
+      <div>
+        <button className="p-2 mr-4 bg-blue-600">
+          <Link to={`/author/update/${author._id}`}>Update</Link>
+        </button>
+        <button className="p-2 bg-blue-600">
+          <Link to={`/author/delete/${author._id}`}>Delete</Link>
+        </button>
+      </div>
     </div>
   );
 };

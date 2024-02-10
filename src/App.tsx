@@ -14,6 +14,7 @@ import CreateBookPage from "./pages/CreateBookPage";
 import BookUpdatePage from "./pages/BookUpdatePage";
 import BookDeletePage from "./pages/BookDeletePage";
 import CreateAuthorPage from "./pages/CreateAuthorPage";
+import AuthorUpdatePage from "./pages/AuhtorUpdatePage";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <Route path="authors" element={<Authors />} />
           <Route path="authors/:id" element={<AuthorDetailPage />} />
           <Route path="author/create" element={<CreateAuthorPage />} />
+          <Route path="author/update/:id" element={<AuthorUpdatePage />} />
+          <Route path="author/delete/:id" element={<BookDeletePage />} />
 
           {/* genre routes  */}
           <Route path="genres" element={<Genres />} />

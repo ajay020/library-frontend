@@ -14,8 +14,6 @@ const CreateAuthorPage = () => {
         throw new Error("Token not found");
       }
 
-      console.log({ authorData });
-
       const response = await axios.post(
         `${API_BASE_URL}/catalog/author/create`,
         {

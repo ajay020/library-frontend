@@ -13,12 +13,12 @@ interface AuthorFormProps {
   onSubmit: (formData: AuthorFormData) => void;
 }
 
-const AuthorForm: React.FC<AuthorFormProps> = ({ onSubmit }) => {
+const AuthorForm: React.FC<AuthorFormProps> = ({ onSubmit, initialAuthor }) => {
   const [formData, setFormData] = useState<AuthorFormData>({
-    firstName: "",
-    familyName: "",
-    dateOfBirth: "",
-    dateOfDeath: "",
+    firstName: initialAuthor?.first_name || "",
+    familyName: initialAuthor?.family_name || "",
+    dateOfBirth: initialAuthor?.date_of_birth?.split("T")[0] || "",
+    dateOfDeath: initialAuthor?.date_of_death?.split("T")[0] || "",
   });
 
   const handleChange = (
