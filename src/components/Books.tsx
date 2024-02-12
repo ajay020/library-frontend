@@ -12,18 +12,24 @@ const Books = () => {
     return <p>Loading...</p>;
   }
 
+  if (!books) {
+    return <p>book not found</p>;
+  }
+
   return (
     <div>
-      <h2>Books</h2>
-      {books ? (
-        books?.map((book) => (
-          <div key={book._id}>
-            <Link to={`${book._id}`}>{book.title}</Link>
-          </div>
-        ))
-      ) : (
-        <p>No books available.</p>
-      )}
+      <h1 className="text-lg font-bold">Book List</h1>
+      <ul className="list-disc">
+        {books.map((book) => (
+          <li className="my-2" key={book._id}>
+            <Link className="text-blue-600" to={`${book._id}`}>
+              {book.title}
+            </Link>
+            <span className="mx-2">{book.author.family_name}</span>
+            <span>{book.author.first_name}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

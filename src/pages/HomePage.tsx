@@ -17,11 +17,11 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex bg-slate-400">
+      <div className="flex bg-slate-100 ">
         <div className="w-1/4 p-3 h-screen">
           <Sidebar />
         </div>
-        <div className="bg-gray-500 w-3/4">
+        <div className="bg-gray-100 w-3/4">
           {currentpath == "/" ? (
             <div>
               <h1>Welcome to Local Library</h1>
