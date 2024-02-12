@@ -31,11 +31,10 @@ export interface Book {
   genre: Genre[];
 }
 
-export interface BookInstace {
+export interface BookInstance {
   _id: string;
   book: Book;
   imprint: string;
-  isbn: string;
-  status: string[];
-  due_back: Date;
+  status: string;
+  due_back: string;
 }

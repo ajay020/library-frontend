@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 
-import { Book, BookInstace } from "../types";
+import { Book, BookInstance } from "../types";
 import { useFetchData } from "../hooks/useFetchData";
 
 const BookDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data, loading } = useFetchData(`/catalog/book/${id}`) as {
-    data: { book: Book; bookInstances: BookInstace[] } | null;
+    data: { book: Book; bookInstances: BookInstance[] } | null;
     loading: boolean;
   };
 
@@ -28,7 +28,7 @@ const BookDetailPage = () => {
       <p>Summary: {book.summary}</p>
       <p>ISBN: {book.isbn}</p>
 
-      {bookInstances.map((bookInstace: BookInstace) => (
+      {bookInstances.map((bookInstace: BookInstance) => (
         <div key={bookInstace._id}>
           <p> {bookInstace?.imprint} </p>
           <p>{bookInstace?.imprint}</p>

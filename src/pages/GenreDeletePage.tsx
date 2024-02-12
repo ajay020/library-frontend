@@ -4,7 +4,7 @@ import { Book, BookInstance } from "../types";
 import axios from "axios";
 import { API_BASE_URL } from "../hooks/useFetchData";
 
-const BookDeletePage = () => {
+const GenreDeletePage = () => {
   const { id } = useParams<{ id: string }>();
   const { data, loading } = useFetchData(`/catalog/book/${id}/delete`) as {
     data: { bookinstances: BookInstance[]; book: Book } | null;
@@ -72,4 +72,4 @@ const BookDeletePage = () => {
   );
 };
 
-export default BookDeletePage;
+export default GenreDeletePage;

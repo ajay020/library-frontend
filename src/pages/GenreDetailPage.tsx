@@ -17,14 +17,24 @@ const GenreDetailPage: React.FC = () => {
     return <p>Genre not found</p>;
   }
 
+  const { genre, books } = data;
+
   return (
     <div>
-      <h2>{data.genre?.name}</h2>
-      {data.books.map((book) => (
+      <h2>{genre?.name}</h2>
+      {books?.map((book) => (
         <Link key={book._id} to={`book/${book._id}`}>
           {book.title}
         </Link>
       ))}
+      <div>
+        <button className="p-2 mr-4 bg-blue-600">
+          <Link to={`/genre/update/${genre._id}`}>Update</Link>
+        </button>
+        <button className="p-2 bg-blue-600">
+          <Link to={`/genre/delete/${genre._id}`}>Delete</Link>
+        </button>
+      </div>
     </div>
   );
 };

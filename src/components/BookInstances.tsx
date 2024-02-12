@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
-import { BookInstace } from "../types";
+import { BookInstance } from "../types";
 
 const BookInstances = () => {
   const { data, loading } = useFetchData("/catalog/bookinstances") as {
-    data: { bookinstace_list: BookInstace[] } | null;
+    data: { bookinstace_list: BookInstance[] } | null;
     loading: boolean;
   };
 
@@ -22,7 +22,7 @@ const BookInstances = () => {
       {data ? (
         data.bookinstace_list?.map((bookInstace) => (
           <div key={bookInstace._id}>
-            <Link to={`/books/${bookInstace._id}`}>
+            <Link to={`/bookinstance/${bookInstace._id}`}>
               {bookInstace.book.title}
             </Link>
           </div>

@@ -8,7 +8,6 @@ import AuthorDetailPage from "./pages/AuthorDetailPage";
 import GenreDetailPage from "./pages/GenreDetailPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import GenreForm from "./components/GenreForm";
 import BookInstances from "./components/BookInstances";
 import CreateBookPage from "./pages/CreateBookPage";
 import BookUpdatePage from "./pages/BookUpdatePage";
@@ -16,6 +15,13 @@ import BookDeletePage from "./pages/BookDeletePage";
 import CreateAuthorPage from "./pages/CreateAuthorPage";
 import AuthorUpdatePage from "./pages/AuhtorUpdatePage";
 import AuthorDeletePage from "./pages/AuthorDeletePage";
+import CreateGenrePage from "./pages/CreateGenrePage";
+import GenreUpdatePage from "./pages/GenreUpdatePage";
+import GenreDeletePage from "./pages/GenreDeletePage";
+import BookInstanceDetailPage from "./pages/BookInstanceDetailPage";
+import BookInstanceUpdatePage from "./pages/BookInstanceUpdatePage";
+import CreateBookInstancePage from "./pages/CreateBookInstancePage";
+import BookInstanceDeletePage from "./pages/BookInstanceDeletePage";
 
 function App() {
   return (
@@ -39,12 +45,25 @@ function App() {
           {/* genre routes  */}
           <Route path="genres" element={<Genres />} />
           <Route path="genres/:id" element={<GenreDetailPage />} />
+          <Route path="genre/create" element={<CreateGenrePage />} />
+          <Route path="genre/update/:id" element={<GenreUpdatePage />} />
+          <Route path="genre/delete/:id" element={<GenreDeletePage />} />
 
           {/* bookinstace routes  */}
           <Route path="bookinstances" element={<BookInstances />} />
-
-          {/* // create catalog items  */}
-          <Route path="genre/create" element={<GenreForm />} />
+          <Route path="bookinstance/:id" element={<BookInstanceDetailPage />} />
+          <Route
+            path="bookinstance/create"
+            element={<CreateBookInstancePage />}
+          />
+          <Route
+            path="bookinstance/update/:id"
+            element={<BookInstanceUpdatePage />}
+          />
+          <Route
+            path="bookinstance/delete/:id"
+            element={<BookInstanceDeletePage />}
+          />
 
           {/* auth routes */}
           <Route path="login" element={<LoginPage />} />
