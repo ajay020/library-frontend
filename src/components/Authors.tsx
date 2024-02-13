@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
+
 import { Author } from "../types";
+import { formatdate } from "../util/helper";
+import Heading from "./Heading";
+import MLink from "./MLink";
 
 const Authors = () => {
   const { data: authors, loading } = useFetchData("/catalog/authors") as {
@@ -13,14 +16,18 @@ const Authors = () => {
   }
 
   return (
-    <div>
-      <h2>Authors</h2>
+    <div className=" flex flex-col gap-4 pl-8">
+      <Heading level={1}>Authors</Heading>
       {authors ? (
         authors.map((author) => (
           <div key={author._id}>
-            <Link to={`${author._id}`}>
+            <MLink to={`${author._id}`}>
               {author.first_name} {author.family_name}
-            </Link>
+            </MLink>
+            <span className="ml-2">
+              ({formatdate(author.date_of_birth)} -{" "}
+              {formatdate(author.date_of_death)})
+            </span>
           </div>
         ))
       ) : (

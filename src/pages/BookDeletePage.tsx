@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Book, BookInstance } from "../types";
 import axios from "axios";
 import { API_BASE_URL } from "../hooks/useFetchData";
+import Button from "../components/Button";
+import MLink from "../components/MLink";
+import Heading from "../components/Heading";
 
 const BookDeletePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -47,25 +50,34 @@ const BookDeletePage = () => {
   };
 
   return (
-    <div>
-      <h1>Delete: {book.title}</h1>
+    <div className="p-8 flex flex-col gap-4">
+      <Heading level={1} className="">
+        Delete: {book.title}
+      </Heading>
       {bookinstances.length > 0 && (
         <div>
-          <p> Delete the bookinstance before deleting the book.</p>
+          <p className="my-2">
+            {" "}
+            Delete the bookinstance before deleting the book.
+          </p>
           {bookinstances.map((bookinstance) => (
-            <p key={bookinstance._id}> {bookinstance.book.title}</p>
+            <MLink
+              key={bookinstance._id}
+              to={`/bookinstance/${bookinstance._id}`}
+              text={bookinstance.book.title}
+            />
           ))}
         </div>
       )}
       {bookinstances.length == 0 && (
         <div>
           <p>Are you sure you want to delete this book?</p>
-          <button
+          <Button
             onClick={() => deleteBook(book._id)}
             className="p-2 bg-blue-600"
           >
             Delete
-          </button>
+          </Button>
         </div>
       )}
     </div>

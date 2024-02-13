@@ -1,7 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { Author, Book } from "../types";
 import { useFetchData } from "../hooks/useFetchData";
+import Heading from "../components/Heading";
+import { formatdate } from "../util/helper";
+import MLink from "../components/MLink";
 
 type AuthorDataType = {
   author: Author;
@@ -27,26 +30,25 @@ const AuthorDetailPage: React.FC = () => {
   const { author, author_books } = data;
 
   return (
-    <div>
-      <h2>
+    <div className="flex flex-col gap-4 p-8">
+      <Heading level={1}>
         {author.first_name} {author.family_name}
-      </h2>
-      <p>Date of Birth: {author?.date_of_birth?.toString()}</p>
-      <p>Books: </p>
+      </Heading>
+      <p>Date of Birth: {formatdate(author?.date_of_birth?.toString())}</p>
+      <Heading level={3} className="text-lg font-normal">
+        Books:{" "}
+      </Heading>
 
       {author_books.map((book: Book) => (
         <div key={book._id}>
-          <p>{book.title}</p>
+          <MLink to={`/books/${book._id}`}>{book.title}</MLink>
         </div>
       ))}
 
-      <div>
-        <button className="p-2 mr-4 bg-blue-600">
-          <Link to={`/author/update/${author._id}`}>Update</Link>
-        </button>
-        <button className="p-2 bg-blue-600">
-          <Link to={`/author/delete/${author._id}`}>Delete</Link>
-        </button>
+      <hr />
+      <div className="flex flex-col gap-4">
+        <MLink to={`/author/update/${author._id}`}>Update</MLink>
+        <MLink to={`/author/delete/${author._id}`}>Delete</MLink>
       </div>
     </div>
   );

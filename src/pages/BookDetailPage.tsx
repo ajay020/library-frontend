@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { Book, BookInstance } from "../types";
 import { useFetchData } from "../hooks/useFetchData";
@@ -22,7 +22,7 @@ const BookDetailPage = () => {
   const { book, bookInstances } = data;
 
   return (
-    <div className={"flex flex-col gap-4"}>
+    <div className={"flex flex-col gap-5 p-8"}>
       <h2 className="text-lg font-bold">Title: {book.title}</h2>
       <p>
         <span>Author: </span>
@@ -33,10 +33,14 @@ const BookDetailPage = () => {
       </p>
       <p>Summary: {book.summary}</p>
       <p>ISBN: {book.isbn}</p>
-      <p>
+      <div>
         <span>Genre: </span>
-        <MLink to={`/authors/${book.author._id}`} text={book?.genre[0]?.name} />
-      </p>
+        <>
+          {book.genre.map((g) => (
+            <MLink key={g._id} to={`/genre/${book.author._id}`} text={g.name} />
+          ))}
+        </>
+      </div>
       <hr />
       <h2>Copies:</h2>
       <div>
@@ -65,15 +69,13 @@ const BookDetailPage = () => {
             </div>
           );
         })}
+
+        {bookInstances.length == 0 && <p>No copy available of this book.</p>}
       </div>
 
-      <div>
-        <button className="p-2 mr-4 bg-blue-600">
-          <Link to={`/book/update/${book._id}`}>Update</Link>
-        </button>
-        <button className="p-2 bg-blue-600">
-          <Link to={`/book/delete/${book._id}`}>Delete</Link>
-        </button>
+      <div className="flex flex-col gap-4">
+        <MLink to={`/book/update/${book._id}`} text="Update" />
+        <MLink to={`/book/delete/${book._id}`} text="Delete" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 import { BookInstance } from "../types";
+import Heading from "./Heading";
+import MLink from "./MLink";
 
 const BookInstances = () => {
   const { data, loading } = useFetchData("/catalog/bookinstances") as {
@@ -17,14 +18,14 @@ const BookInstances = () => {
   }
 
   return (
-    <div>
-      <h2>BookInstace: </h2>
+    <div className=" flex flex-col gap-4 pl-8">
+      <Heading level={1}>BookInstace: </Heading>
       {data ? (
         data.bookinstace_list?.map((bookInstace) => (
           <div key={bookInstace._id}>
-            <Link to={`/bookinstance/${bookInstace._id}`}>
+            <MLink to={`/bookinstance/${bookInstace._id}`}>
               {bookInstace.book.title}
-            </Link>
+            </MLink>
           </div>
         ))
       ) : (

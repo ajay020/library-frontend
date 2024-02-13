@@ -44,8 +44,8 @@ const BookUpdatePage = () => {
   };
 
   return (
-    <div>
-      <h1>Update book</h1>
+    <div className="">
+      <h1 className="text-center text-lg my-4 ">Update book</h1>
       <BookForm
         authors={data.authors}
         genres={data.genres}

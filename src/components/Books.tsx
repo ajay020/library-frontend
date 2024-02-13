@@ -17,7 +17,7 @@ const Books = () => {
   }
 
   return (
-    <div>
+    <div className="pl-8">
       <h1 className="text-lg font-bold">Book List</h1>
       <ul className="list-disc">
         {books.map((book) => (

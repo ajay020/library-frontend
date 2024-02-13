@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="">
-      <ul>
+    <div className="pl-8">
+      <ul className="flex flex-col gap-2">
         <li className="hover:underline">
           <Link to="books">All Books</Link>
         </li>
@@ -18,7 +18,7 @@ const Sidebar = () => {
         </li>
       </ul>
       <hr className="my-2" />
-      <ul>
+      <ul className="flex flex-col gap-2">
         <li className="hover:underline">
           <Link to="book/create">Create new book</Link>
         </li>
